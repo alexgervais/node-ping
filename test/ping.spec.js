@@ -60,9 +60,9 @@ describe('ping:', function () {
             });
         });
 
-        it('should not be able to ping yahoo.com', function (done) {
+        it('should not be able to ping unknownhost.local', function (done) {
 
-            ping.sys.probe('yahoo.com', function (err, data) {
+            ping.sys.probe('unknownhost.local', function (err, data) {
 
                 expect(err).to.be(null);
                 expect(data).to.be(false);
@@ -82,6 +82,9 @@ describe('ping:', function () {
                     expect(result.host).to.be('127.0.0.1');
                     expect(result.alive).to.be(true);
 
+                    expect(result.time).to.be.greaterThan(0);
+                    expect(result.time).to.be.lessThan(1000);
+
                     done();
                 })
                 .done();
@@ -95,18 +98,23 @@ describe('ping:', function () {
                     expect(result.host).to.be('google.com');
                     expect(result.alive).to.be(true);
 
+                    expect(result.time).to.be.greaterThan(0);
+                    expect(result.time).to.be.lessThan(1000);
+
                     done();
                 })
                 .done();
         });
 
-        it('should not be able to ping yahoo.com', function (done) {
+        it('should not be able to ping unknownhost.local', function (done) {
 
-            ping.promise.probe('yahoo.com')
+            ping.promise.probe('unknownhost.local')
                 .then(function (result) {
 
-                    expect(result.host).to.be('yahoo.com');
+                    expect(result.host).to.be('unknownhost.local');
                     expect(result.alive).to.be(false);
+
+                    expect(result.time).to.be.greaterThan(1000);
 
                     done();
                 })
@@ -126,6 +134,9 @@ describe('ping:', function () {
                     expect(result.host).to.be('127.0.0.1');
                     expect(result.alive).to.be(true);
 
+                    expect(result.time).to.be.greaterThan(0);
+                    expect(result.time).to.be.lessThan(1000);
+
                     done();
                 })
                 .done();
@@ -141,20 +152,25 @@ describe('ping:', function () {
                     expect(result.host).to.be('google.com');
                     expect(result.alive).to.be(true);
 
+                    expect(result.time).to.be.greaterThan(0);
+                    expect(result.time).to.be.lessThan(1000);
+
                     done();
                 })
                 .done();
         });
 
-        it('should not be able to ping yahoo.com', function (done) {
+        it('should not be able to ping unknownhost.local', function (done) {
 
             this.timeout(5000);
 
-            ping.promise.probe('yahoo.com', pingOptions)
+            ping.promise.probe('unknownhost.local', pingOptions)
                 .then(function (result) {
 
-                    expect(result.host).to.be('yahoo.com');
+                    expect(result.host).to.be('unknownhost.local');
                     expect(result.alive).to.be(false);
+
+                    expect(result.time).to.be.greaterThan(4000);
 
                     done();
                 })
