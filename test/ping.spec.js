@@ -23,7 +23,7 @@ describe('ping:', function () {
 
         ping = require('../index');
         pingOptions = {
-            timeout: 1,
+            timeout: 4,
             extra: ['-i', '2']
         };
 
@@ -39,9 +39,10 @@ describe('ping:', function () {
 
         it('should ping 127.0.0.1 successfully', function (done) {
 
-            ping.sys.probe('127.0.0.1', function (isAlive) {
+            ping.sys.probe('127.0.0.1', function (err, data) {
 
-                expect(isAlive).to.be(true);
+                expect(err).to.be(null);
+                expect(data).to.be(true);
 
                 done();
             });
@@ -49,9 +50,10 @@ describe('ping:', function () {
 
         it('should ping google.com successfully', function (done) {
 
-            ping.sys.probe('google.com', function (isAlive) {
+            ping.sys.probe('google.com', function (err, data) {
 
-                expect(isAlive).to.be(true);
+                expect(err).to.be(null);
+                expect(data).to.be(true);
 
                 done();
             });
@@ -59,9 +61,10 @@ describe('ping:', function () {
 
         it('should not be able to ping yahoo.com', function (done) {
 
-            ping.sys.probe('yahoo.com', function (isAlive) {
+            ping.sys.probe('yahoo.com', function (err, data) {
 
-                expect(isAlive).to.be(false);
+                expect(err).to.be(null);
+                expect(data).to.be(false);
 
                 done();
             });
@@ -114,6 +117,8 @@ describe('ping:', function () {
 
         it('should ping 127.0.0.1 successfully', function (done) {
 
+            this.timeout(5000);
+
             ping.promise.probe('127.0.0.1', pingOptions)
                 .then(function (result) {
 
@@ -127,6 +132,8 @@ describe('ping:', function () {
 
         it('should ping google.com successfully', function (done) {
 
+            this.timeout(5000);
+
             ping.promise.probe('google.com', pingOptions)
                 .then(function (result) {
 
@@ -139,6 +146,8 @@ describe('ping:', function () {
         });
 
         it('should not be able to ping yahoo.com', function (done) {
+
+            this.timeout(5000);
 
             ping.promise.probe('yahoo.com', pingOptions)
                 .then(function (result) {
