@@ -23,6 +23,7 @@ describe('ping:', function () {
 
         ping = require('../index');
         pingOptions = {
+            numeric: false,
             timeout: 4,
             extra: ['-i', '2']
         };
