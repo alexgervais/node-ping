@@ -2,17 +2,35 @@
 
 A simple wrapper for performing system ICMP ping in node.js
 
+## Table of content
+
+* [Installation](#installation)
+* [ICPM](#icmp)
+ * [Support](#support)
+ * [Options](#options)
+ * [Usage](#usage)
+* [License](#license)
+* [Credits](#credits)
+
 ## Installation
 
-```
-npm install alexgervais/node-ping
+Add node-ping to your project dependencies
+```bash
+npm install alexgervais/node-ping --save
 ```
 
-## Support
+Require the `node-ping` module and enjoy!
+```node
+var ping = require('node-ping');
+```
+
+## ICMP
+
+### Support
 
 Supported platforms are `linux` and `darwin` (Mac OSX)
 
-## Options
+### Options
 
 ```node
 var options = {
@@ -23,12 +41,12 @@ var options = {
 }
 ```
 
-## Usage
+### Usage
 
-### error-first callback pattern
+#### error-first callback pattern
 
 ```node
-var ping = require('ping');
+var ping = require('node-ping');
 var options = {};
 
 var hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
@@ -40,7 +58,7 @@ hosts.forEach(function (host) {
 });
 ```
 
-### Q promise
+#### Q promise
 
 ```node
 hosts.forEach(function (host) {
