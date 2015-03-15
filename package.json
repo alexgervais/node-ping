@@ -1,26 +1,32 @@
 {
-  "author": "alexgervais <alex.gervais@gmail.com> (http://alexgervais.github.io)",
-  "contributors": [
-    {
-      "name": "danielzzz",
-      "email": "daniel@zelisko.net",
-      "url": "http://daniel.zelisko.net"
+    "author": "alexgervais <alex.gervais@gmail.com> (http://alexgervais.github.io)",
+    "contributors": [
+        {
+            "name": "danielzzz",
+            "email": "daniel@zelisko.net",
+            "url": "http://daniel.zelisko.net"
+        }
+    ],
+    "name": "node-ping",
+    "description": "A simple wrapper for performing system ICMP ping in node.js",
+    "version": "1.0.0",
+    "homepage": "https://github.com/alexgervais/node-ping",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/alexgervais/node-ping.git"
+    },
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "dependencies": {
+        "q": "1.2.0"
+    },
+    "devDependencies": {
+        "expect.js": "^0.3.1",
+        "mocha": "^2.2.1"
+    },
+    "main": "index.js",
+    "scripts": {
+        "test": "node_modules/mocha/bin/mocha test"
     }
-  ],
-  "name": "node-ping",
-  "description": "A simple wrapper for performing system ICMP ping in node.js",
-  "version": "1.0.0",
-  "homepage": "https://github.com/alexgervais/node-ping",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/alexgervais/node-ping.git"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "dependencies": {
-    "q": "1.2.0"
-  },
-  "devDependencies": {},
-  "main": "index.js"
 }
