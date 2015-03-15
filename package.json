@@ -1,18 +1,25 @@
 {
-  "author": "danielzzz <daniel@zelisko.net> (http://daniel.zelisko.net)",
-  "name": "ping",
-  "description": "a simple wrapper for ping",
-  "version": "0.1.9",
-  "homepage": "http://github.com/danielzzz/node-ping",
+  "author": "alexgervais <alex.gervais@gmail.com> (http://alexgervais.github.io)",
+  "contributors": [
+    {
+      "name": "danielzzz",
+      "email": "daniel@zelisko.net",
+      "url": "http://daniel.zelisko.net"
+    }
+  ],
+  "name": "node-ping",
+  "description": "A simple wrapper for performing system ICMP ping in node.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/alexgervais/node-ping",
   "repository": {
     "type": "git",
-    "url": "git://github.com/danielzzz/node-ping.git"
+    "url": "https://github.com/alexgervais/node-ping.git"
   },
   "engines": {
-    "node": ">=0.6.2"
+    "node": ">=0.10.0"
   },
   "dependencies": {
-    "q": "1.x"
+    "q": "1.2.0"
   },
   "devDependencies": {},
   "main": "index.js"

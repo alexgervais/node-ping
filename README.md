@@ -1,24 +1,16 @@
-#NODE-PING
-a ping wrapper for nodejs
+# node-ping
 
-#LICENSE MIT
+A simple wrapper for performing system ICMP ping in node.js
 
-(C) Daniel Zelisko
+## Installation
 
-http://github.com/danielzzz/node-ping
+npm install alexgervais/node-ping
 
-#DESCRIPTION
+## Usage
 
-node-ping is a simple wrapper for the system ping utility
+### Tradition calls
 
-#INSTALLATION
-
-npm install ping
-
-#USAGE
-
-##Tradition calls
-
+    ```node
     var ping = require('ping');
 
     var hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
@@ -28,9 +20,11 @@ npm install ping
             console.log(msg);
         });
     });
+    ```
 
-##Promise wrapper
+### Promise wrapper
 
+    ```node
     var ping = require('ping');
 
     var hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
@@ -41,10 +35,13 @@ npm install ping
                 console.log(res);
             });
     });
+    ```
 
-##Promise Wrapper with configable ping options
+### Promise Wrapper with configable ping options
 
-    //Only promise wrapper supports configable ping options
+    **The configurable options are only supported by the promise wrapper**
+    
+    ```node
     hosts.forEach(function (host) {
         ping.promise.probe(host, {
             timeout: 10,
@@ -53,4 +50,12 @@ npm install ping
                 console.log(res);
             });
     });
+    ```
 
+## License
+
+MIT
+
+## Credits
+
+Forked from Daniel Zelisko http://github.com/danielzzz/node-ping
