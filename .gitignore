@@ -1,19 +1,6 @@
-lib-cov
-*.seed
 *.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-*.tgz
-
-pids
-logs
-results
 
 node_modules
-npm-debug.log
 
 .idea
-node-ping.iml
+*.iml
