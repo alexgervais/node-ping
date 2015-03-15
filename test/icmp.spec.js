@@ -2,10 +2,10 @@
 
 var expect = require('expect.js');
 
-describe('ping:', function () {
+describe('icmp:', function () {
 
     var ping;
-    var pingOptions;
+    var options;
 
     before(function (done) {
 
@@ -22,7 +22,7 @@ describe('ping:', function () {
     beforeEach(function (done) {
 
         ping = require('../index');
-        pingOptions = {
+        options = {
             numeric: false,
             timeout: 4,
             extra: ['-i', '2']
@@ -36,14 +36,18 @@ describe('ping:', function () {
         done();
     });
 
-    describe('ping-sys:', function () {
+    describe('callback:', function () {
 
         it('should ping 127.0.0.1 successfully', function (done) {
 
-            ping.sys.probe('127.0.0.1', function (err, data) {
+            ping.icmp.probe('127.0.0.1', {}, function (err, data) {
 
                 expect(err).to.be(null);
-                expect(data).to.be(true);
+
+                expect(data.host).to.be('127.0.0.1');
+                expect(data.alive).to.be(true);
+                expect(data.time).to.be.greaterThan(0);
+                expect(data.time).to.be.lessThan(1000);
 
                 done();
             });
@@ -51,10 +55,14 @@ describe('ping:', function () {
 
         it('should ping google.com successfully', function (done) {
 
-            ping.sys.probe('google.com', function (err, data) {
+            ping.icmp.probe('google.com', {}, function (err, data) {
 
                 expect(err).to.be(null);
-                expect(data).to.be(true);
+
+                expect(data.host).to.be('google.com');
+                expect(data.alive).to.be(true);
+                expect(data.time).to.be.greaterThan(0);
+                expect(data.time).to.be.lessThan(1000);
 
                 done();
             });
@@ -62,21 +70,24 @@ describe('ping:', function () {
 
         it('should not be able to ping unknownhost.local', function (done) {
 
-            ping.sys.probe('unknownhost.local', function (err, data) {
+            ping.icmp.probe('unknownhost.local', {}, function (err, data) {
 
                 expect(err).to.be(null);
-                expect(data).to.be(false);
+
+                expect(data.host).to.be('unknownhost.local');
+                expect(data.alive).to.be(false);
+                expect(data.time).to.be.greaterThan(1000);
 
                 done();
             });
         });
     });
 
-    describe('ping-promise:', function () {
+    describe('promise:', function () {
 
         it('should ping 127.0.0.1 successfully', function (done) {
 
-            ping.promise.probe('127.0.0.1')
+            ping.icmp.probe('127.0.0.1')
                 .then(function (result) {
 
                     expect(result.host).to.be('127.0.0.1');
@@ -92,7 +103,7 @@ describe('ping:', function () {
 
         it('should ping google.com successfully', function (done) {
 
-            ping.promise.probe('google.com')
+            ping.icmp.probe('google.com')
                 .then(function (result) {
 
                     expect(result.host).to.be('google.com');
@@ -108,7 +119,7 @@ describe('ping:', function () {
 
         it('should not be able to ping unknownhost.local', function (done) {
 
-            ping.promise.probe('unknownhost.local')
+            ping.icmp.probe('unknownhost.local')
                 .then(function (result) {
 
                     expect(result.host).to.be('unknownhost.local');
@@ -122,13 +133,13 @@ describe('ping:', function () {
         });
     });
 
-    describe('ping-promise, with options:', function () {
+    describe('promise, with options:', function () {
 
         it('should ping 127.0.0.1 successfully', function (done) {
 
             this.timeout(5000);
 
-            ping.promise.probe('127.0.0.1', pingOptions)
+            ping.icmp.probe('127.0.0.1', options)
                 .then(function (result) {
 
                     expect(result.host).to.be('127.0.0.1');
@@ -146,7 +157,7 @@ describe('ping:', function () {
 
             this.timeout(5000);
 
-            ping.promise.probe('google.com', pingOptions)
+            ping.icmp.probe('google.com', options)
                 .then(function (result) {
 
                     expect(result.host).to.be('google.com');
@@ -164,7 +175,7 @@ describe('ping:', function () {
 
             this.timeout(5000);
 
-            ping.promise.probe('unknownhost.local', pingOptions)
+            ping.icmp.probe('unknownhost.local', options)
                 .then(function (result) {
 
                     expect(result.host).to.be('unknownhost.local');

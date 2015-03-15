@@ -2,7 +2,6 @@
 
 var ping = {};
 
-ping.sys = require('./lib/ping-sys');
-ping.promise = require('./lib/ping-promise');
+ping.icmp = require('./lib/icmp');
 
 module.exports = ping;

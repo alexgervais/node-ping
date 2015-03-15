@@ -12,49 +12,42 @@ npm install alexgervais/node-ping
 
 Supported platforms are `linux` and `darwin` (Mac OSX)
 
+## Options
+
+```node
+var options = {
+    numeric: true, // Numeric output only. Default is true.
+    timeout: 1,    // Timeout, in seconds. Default is 1.
+    replies: 1,    // Number of pings to perform. Default is 1.
+    extra: []     // Any other options to be passed as-is to the system process. These can be platform-dependant.
+}
+```
+
 ## Usage
 
-### Tradition calls
+### error-first callback pattern
 
 ```node
 var ping = require('ping');
+var options = {};
 
 var hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
-hosts.forEach(function(host){
-    ping.sys.probe(host, function(err, isAlive){
-        var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
+hosts.forEach(function (host) {
+    ping.icmp.probe(host, options, function (err, data) {
+        var msg = data.alive ? 'host ' + data.host + ' is alive' : 'host ' + data.host + ' is dead';
         console.log(msg);
     });
 });
 ```
 
-### Promise wrapper
-
-```node
-var ping = require('ping');
-
-var hosts = ['192.168.1.1', 'google.com', 'yahoo.com'];
-
-hosts.forEach(function (host) {
-    ping.promise.probe(host)
-        .then(function (res) {
-            console.log(res);
-        });
-});
-```
-
-### Promise Wrapper with configable ping options
-
-**The configurable options are only supported by the promise wrapper**
+### Q promise
 
 ```node
 hosts.forEach(function (host) {
-    ping.promise.probe(host, {
-        timeout: 10,
-        extra: ["-i 2"]
-    }).then(function (res) {
-            console.log(res);
-        });
+    ping.icmp.probe(host, options)
+    .then(function (res) {
+        console.log(res);
+    });
 });
 ```
 
