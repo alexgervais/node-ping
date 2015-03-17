@@ -10,9 +10,9 @@ A simple wrapper for performing system ICMP ping in node.js
  * [Support](#support)
  * [Options](#options)
  * [Usage](#usage)
-* [HTTP(s)](#http_s_)
- * [Options](#options)
- * [Usage](#usage)
+* [HTTP(s)](#https)
+ * [Options](#options-1)
+ * [Usage](#usage-1)
 * [License](#license)
 * [Credits](#credits)
 
