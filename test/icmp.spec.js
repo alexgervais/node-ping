@@ -10,6 +10,7 @@ describe('icmp:', function () {
     before(function (done) {
 
         process.env.NODE_ENV = 'test';
+        // process.env.DEBUG = true;
 
         done();
     });
