@@ -37,7 +37,7 @@ var options = {
     numeric: true, // Numeric output only. Default is true.
     timeout: 1,    // Timeout, in seconds. Default is 1.
     replies: 1,    // Number of pings to perform. Default is 1.
-    extra: []     // Any other options to be passed as-is to the system process. These can be platform-dependant.
+    extra: []      // Any other options to be passed as-is to the system process. These can be platform-dependant.
 }
 ```
 
