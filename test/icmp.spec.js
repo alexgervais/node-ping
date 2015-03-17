@@ -1,6 +1,7 @@
 'use strict';
 
 var expect = require('expect.js');
+var sinon = require('sinon');
 
 describe('icmp:', function () {
 
@@ -49,6 +50,49 @@ describe('icmp:', function () {
                 expect(data.alive).to.be(true);
                 expect(data.time).to.be.greaterThan(0);
                 expect(data.time).to.be.lessThan(1000);
+
+                done();
+            });
+        });
+
+        it('should ping 127.0.0.1 with error; mocking unsupported platform', function (done) {
+
+            var os = require('os');
+            var osMock = sinon.mock(os);
+            osMock.expects('platform').once().returns('Windowz');
+
+            ping.icmp.probe('127.0.0.1', {}, function (err, data) {
+
+                osMock.verify();
+                osMock.restore();
+
+                expect(err).to.be.a(Error);
+                expect(err.message).to.be('icmp is unsupported for this platform [Windowz]');
+
+                expect(data).to.be(undefined);
+
+                done();
+            });
+        });
+
+        it('should ping 127.0.0.1 with process execution error; mocking other platform', function (done) {
+
+            var os = require('os');
+
+            var otherPlatform = os.platform() === 'linux' ? 'darwin' : 'linux';
+
+            var osMock = sinon.mock(os);
+            osMock.expects('platform').once().returns(otherPlatform);
+
+            ping.icmp.probe('127.0.0.1', {}, function (err, data) {
+
+                osMock.verify();
+                osMock.restore();
+
+                expect(err).to.be.a(Error);
+                expect(err.message).to.be('icmp: there was an error while executing the ping program. check the path or permissions...');
+
+                expect(data).to.be(undefined);
 
                 done();
             });

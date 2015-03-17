@@ -57,7 +57,7 @@ describe('http:', function () {
                     expect(data.host).to.be('127.0.0.1:9999/some_path?variable&query=true');
                     expect(data.alive).to.be(true);
                     expect(data.time).to.be.greaterThan(0);
-                    expect(data.time).to.be.lessThan(1000);
+                    expect(data.time).to.be.lessThan(1800);
 
                     done();
                 });
@@ -73,7 +73,7 @@ describe('http:', function () {
                     expect(data.host).to.be('127.0.0.1:9999/some_path?variable&query=true');
                     expect(data.alive).to.be(false);
                     expect(data.time).to.be.greaterThan(0);
-                    expect(data.time).to.be.lessThan(1000);
+                    expect(data.time).to.be.lessThan(1800);
 
                     done();
                 });
@@ -90,7 +90,7 @@ describe('http:', function () {
                     expect(data.host).to.be('127.0.0.1:9999');
                     expect(data.alive).to.be(false);
                     expect(data.time).to.be.greaterThan(0);
-                    expect(data.time).to.be.lessThan(1000);
+                    expect(data.time).to.be.lessThan(1800);
 
                     done();
                 });
@@ -105,7 +105,7 @@ describe('http:', function () {
                 expect(data.host).to.be('https://www.google.com');
                 expect(data.alive).to.be(true);
                 expect(data.time).to.be.greaterThan(0);
-                expect(data.time).to.be.lessThan(1000);
+                expect(data.time).to.be.lessThan(1800);
 
                 done();
             });
@@ -138,7 +138,7 @@ describe('http:', function () {
                     expect(result.alive).to.be(true);
 
                     expect(result.time).to.be.greaterThan(0);
-                    expect(result.time).to.be.lessThan(1000);
+                    expect(result.time).to.be.lessThan(1800);
 
                     done();
                 })
@@ -154,7 +154,7 @@ describe('http:', function () {
                     expect(result.alive).to.be(true);
 
                     expect(result.time).to.be.greaterThan(0);
-                    expect(result.time).to.be.lessThan(1000);
+                    expect(result.time).to.be.lessThan(1800);
 
                     done();
                 })
@@ -193,7 +193,7 @@ describe('http:', function () {
                     expect(result.alive).to.be(true);
 
                     expect(result.time).to.be.greaterThan(0);
-                    expect(result.time).to.be.lessThan(1000);
+                    expect(result.time).to.be.lessThan(1800);
 
                     done();
                 })
@@ -211,7 +211,7 @@ describe('http:', function () {
                     expect(result.alive).to.be(true);
 
                     expect(result.time).to.be.greaterThan(0);
-                    expect(result.time).to.be.lessThan(1000);
+                    expect(result.time).to.be.lessThan(1800);
 
                     done();
                 })
