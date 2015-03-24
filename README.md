@@ -130,4 +130,4 @@ MIT
 
 ## Credits
 
-Forked from Daniel Zelisko http://github.com/danielzzz/node-ping
+ICMP Ping initially forked from Daniel Zelisko http://github.com/danielzzz/node-ping
